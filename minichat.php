@@ -22,6 +22,25 @@
       <input type="submit" name="boutton" value="Envoyer">
       </p>
 
+      <?php
+      try
+      {
+        $bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', 'root');
+      }
+       catch (Exception $e)
+       {
+        die('Erreur :' . $e->getMessage());
+      }
+
+      $reponse= $bdd->query('SELECT pseudo,message FROM minichat ORDER BY id DESC LIMIT 10');
+      while ($donnees = $reponse ->fetch())
+      {
+        echo '<p><strong>' . $donnees['pseudo'] . '</strong> :' . $donnees['message'] . ' </p>';
+
+
+      }
+       ?>
+
       </form>
   </body>
 </html>

@@ -21,9 +21,11 @@ if (isset($_POST['pseudo']) AND isset($_POST['message']))
  $req = $bdd->prepare('INSERT INTO minichat(pseudo,message) VALUE(:pseudo,:message)');
  $req->execute(array(
    'pseudo' => htmlspecialchars($_POST['pseudo']),
-   'message' =>$_POST['message'],
+   'message' =>htmlspecialchars($_POST['message']),
  ));
+}
 
  header('Location: minichat.php');
-};
+
+
 ?>
